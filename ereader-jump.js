@@ -1,9 +1,7 @@
-cat > /mnt/user-data/outputs/ereader-jump.js << 'EOF'
 function jumpToPage(book, targetPageNum) {
   const pages = [...book.getElementsByClassName('bookpage')];
   const total = pages.length;
 
-  // Full reset
   book.classList.remove('opened', 'unrolled');
   pages.forEach(p => p.classList.remove('flipped', 'clickable'));
   pages.forEach((p, i) => {
@@ -12,26 +10,19 @@ function jumpToPage(book, targetPageNum) {
 
   if (targetPageNum <= 0) return;
 
-  // Open the book
   book.classList.add('opened');
 
-  // Indexes 0+1 are the cover pair (always flipped when open).
-  // Content page 1 = index 2, page 2 = index 3, page N = index N+1.
-  // We want the even index of the spread containing the target.
   const targetIndex = targetPageNum + 2;
   const evenIndex = targetIndex % 2 === 0 ? targetIndex : targetIndex + 1;
 
+  // Debug display
+  const debug = document.getElementById('jump-debug');
+  if (debug) debug.textContent = `input=${targetPageNum} | targetIndex=${targetIndex} | evenIndex=${evenIndex} | flipping 0–${evenIndex-1}`;
 
-  // Flip everything up to (not including) the target spread
   for (let i = 0; i < evenIndex; i++) {
     pages[i].classList.add('flipped');
   }
 
-  console.log('targetPageNum:', targetPageNum, '| targetIndex:', targetIndex, '| evenIndex:', evenIndex);
-console.log('flipping up to index:', evenIndex, '| clickable:', evenIndex-1, evenIndex+1, evenIndex+2);
-
-
-  // Restore clickable to match what the click handler would have set
   const oddPage  = evenIndex + 1;
   const nextEven = evenIndex + 2;
   const prevEven = evenIndex - 1;
@@ -44,8 +35,15 @@ console.log('flipping up to index:', evenIndex, '| clickable:', evenIndex-1, eve
 function buildJumpControls() {
   const books = document.querySelectorAll('.book');
 
+  // Debug box
+  const debugBox = document.createElement('div');
+  debugBox.id = 'jump-debug';
+  debugBox.style.cssText = 'position:fixed;top:0;left:0;right:0;background:black;color:lime;font-family:monospace;font-size:14px;padding:8px;z-index:9999;';
+  debugBox.textContent = 'Jump debug ready';
+  document.body.prepend(debugBox);
+
   books.forEach((book, bookIndex) => {
-    const pageCount = book.getElementsByClassName('bookpage').length - 2; // subtract cover pair
+    const pageCount = book.getElementsByClassName('bookpage').length - 2;
 
     const strip = document.createElement('div');
     strip.className = 'jump-strip';
@@ -91,10 +89,7 @@ jumpStyles.textContent = `
     font-family: inherit;
     font-size: 0.875rem;
   }
-  .jump-strip label {
-    font-weight: 500;
-    white-space: nowrap;
-  }
+  .jump-strip label { font-weight: 500; white-space: nowrap; }
   .jump-strip input {
     width: 5rem;
     padding: 0.25rem 0.4rem;
@@ -112,12 +107,7 @@ jumpStyles.textContent = `
     font-size: 0.875rem;
     transition: background 0.15s;
   }
-  .jump-strip button:hover {
-    background: #e0e0e0;
-  }
-  .jump-hint {
-    color: #888;
-    white-space: nowrap;
-  }
+  .jump-strip button:hover { background: #e0e0e0; }
+  .jump-hint { color: #888; white-space: nowrap; }
 `;
 document.head.appendChild(jumpStyles);
