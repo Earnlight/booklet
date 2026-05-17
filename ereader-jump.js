@@ -19,7 +19,8 @@ function jumpToPage(book, targetPageNum) {
   // Content page 1 = index 2, page 2 = index 3, page N = index N+1.
   // We want the even index of the spread containing the target.
   const targetIndex = targetPageNum + 2;
-  const evenIndex = targetIndex % 2 === 0 ? targetIndex : targetIndex - 1;
+  const evenIndex = targetIndex % 2 === 0 ? targetIndex : targetIndex + 1;
+
 
   // Flip everything up to (not including) the target spread
   for (let i = 0; i < evenIndex; i++) {
