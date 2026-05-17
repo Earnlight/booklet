@@ -320,7 +320,6 @@ body {
     .rtl .bookpage .booktitle {
         padding: 3em 1.5em 0 0;
     }
-}
 
 .jump-strip {
   display: flex;
@@ -330,4 +329,7 @@ body {
   margin-top: 1rem;
   font-family: inherit;
   font-size: 0.875rem;
+    }
+
+
 }
