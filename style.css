@@ -307,6 +307,8 @@ body {
         border-radius: 0 5px 5px 0;
     }
 
+    
+
     .rtl .bookpage:nth-child(even)::before {
         text-align: right;
     }
@@ -318,4 +320,14 @@ body {
     .rtl .bookpage .booktitle {
         padding: 3em 1.5em 0 0;
     }
+}
+
+.jump-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
 }
