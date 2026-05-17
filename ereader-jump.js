@@ -27,7 +27,7 @@ function jumpToPage(book, targetPageNum) {
   //    Pages are in pairs: (0,1), (2,3), (4,5) …
   //    To show page N we need all pairs whose even index < targetPageNum flipped.
   //    The "current spread" is the pair that contains targetPageNum.
-  const spreadStart = targetPageNum % 2 === 0 ? targetPageNum - 1 : targetPageNum;
+  const spreadStart = targetPageNum % 2 === 0 ? : targetPageNum;
   // spreadStart is the odd page of the visible spread (right-hand leaf)
 
   for (let i = 0; i < spreadStart; i++) {
