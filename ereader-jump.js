@@ -104,13 +104,14 @@ buildJumpControls();
 const jumpStyles = document.createElement('style');
 jumpStyles.textContent = `
   .jump-strip {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    font-family: inherit;
-    font-size: 0.875rem;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+    }
   .jump-strip label {
     font-weight: 500;
     white-space: nowrap;
@@ -139,5 +140,7 @@ jumpStyles.textContent = `
     color: #888;
     white-space: nowrap;
   }
+
+  
 `;
 document.head.appendChild(jumpStyles);
