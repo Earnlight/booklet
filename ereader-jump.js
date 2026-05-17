@@ -78,7 +78,7 @@ function buildJumpControls() {
     `;
 
     // Insert the strip directly before the book in the DOM
-    book.parentElement.insertBefore(strip, book);
+    book.parentElement.appendChild(strip);
 
     strip.querySelector('button').addEventListener('click', () => {
       const input = strip.querySelector('input');
