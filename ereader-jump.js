@@ -27,6 +27,10 @@ function jumpToPage(book, targetPageNum) {
     pages[i].classList.add('flipped');
   }
 
+  console.log('targetPageNum:', targetPageNum, '| targetIndex:', targetIndex, '| evenIndex:', evenIndex);
+console.log('flipping up to index:', evenIndex, '| clickable:', evenIndex-1, evenIndex+1, evenIndex+2);
+
+
   // Restore clickable to match what the click handler would have set
   const oddPage  = evenIndex + 1;
   const nextEven = evenIndex + 2;
