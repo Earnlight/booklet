@@ -27,7 +27,7 @@ function jumpToPage(book, targetPageNum) {
   //    Pages are in pairs: (0,1), (2,3), (4,5) …
   //    To show page N we need all pairs whose even index < targetPageNum flipped.
   //    The "current spread" is the pair that contains targetPageNum.
-  const spreadStart = targetPageNum % 2 === 0 ? : targetPageNum;
+  const spreadStart = targetPageNum % 2 === 0 ? targetPageNum - 1 : targetPageNum;
   // spreadStart is the odd page of the visible spread (right-hand leaf)
 
   for (let i = 0; i < spreadStart; i++) {
@@ -85,7 +85,7 @@ function buildJumpControls() {
       const requested = parseInt(input.value, 10);
       if (isNaN(requested)) return;
       // User-facing pages are 1-based; internal indices are 0-based
-      jumpToPage(book, requested - 1);
+      jumpToPage(book, requested);
     });
 
     // Also trigger on Enter key inside the input
