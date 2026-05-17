@@ -17,7 +17,8 @@ function jumpToPage(book, targetPageNum) {
 
   // Debug display
   const debug = document.getElementById('jump-debug');
-  if (debug) debug.textContent = `input=${targetPageNum} | targetIndex=${targetIndex} | evenIndex=${evenIndex} | flipping 0–${evenIndex-1}`;
+  alert(`input=${targetPageNum} | targetIndex=${targetIndex} | evenIndex=${evenIndex} | flipping 0–${evenIndex-1}`);
+
 
   for (let i = 0; i < evenIndex; i++) {
     pages[i].classList.add('flipped');
